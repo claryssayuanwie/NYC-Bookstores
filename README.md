@@ -55,3 +55,16 @@ This project is licensed under the MIT License – feel free to use and modify!
 Check out the deployed site here:
 👉 [NYC Bookstores](https://nyc-bookstores.onrender.com/)
 
+## 🔮 Future Improvements  
+- 📌 **Database Integration** – Replace the in-memory list with a database for persistent storage.  
+- 🗺️ **Interactive Maps** – Add an embedded map to visualize bookstore locations.  
+- 📷 **Image Uploads** – Allow users to upload bookstore images.  
+- ⭐ **User Reviews & Ratings** – Enable users to leave reviews and rate bookstores.  
+- 🔍 **Advanced Search Filters** – Improve search by replacing comma-separated lists with dropdown options.  
+- 📆 **Event Listings** – Show upcoming events at bookstores.  
+- 🎨 **UI & Accessibility Fixes** – Improve design for better readability and usability.  
+- 📱 **Mobile-Friendly Design** – Optimize layout for small screens and better navigation.  
+
+---
+
+**Note:** I built this project for a midterm, but I think it has the potential for more improvements!
