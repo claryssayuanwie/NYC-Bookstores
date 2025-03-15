@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=BioRhyme:wght@700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=BioRhyme:wght@700&display=swap" rel="stylesheet">
     
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
-        <title>NYC Bookstores</title>
-    </head>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     
-    
+    <title>NYC Bookstores</title>
+</head>
     
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -29,7 +26,7 @@
 
     <div class="container mt-5">
         <h2 class="mb-4">Edit Bookstore</h2>
-        <form action="/edit/{{ bookstore.id }}" method="post" class="styled-form row g-3">
+        <form action="/edit/{{ bookstore.id }}" method="post" class="styled-form row g-3" nonvalidate>
     
             <div class="col-md-6">
                 <label class="form-label">Bookstore</label>
@@ -110,14 +107,48 @@
         }
     </script>
     
+    <!-- Discard Changes Confirmation Script -->
     <script>
         document.getElementById("discard-btn").addEventListener("click", function () {
-            window.location.href = '/view/{{ bookstore.id }}';
+            // Show confirmation dialog
+            const isConfirmed = confirm("Are you sure you want to discard your changes?");
+            
+            // If user confirms, redirect to the view page
+            if (isConfirmed) {
+                window.location.href = '/view/{{ bookstore.id }}';
+            }
+            // If user cancels, stay on the edit page
         });
     </script>
-    
 
-
-
+    <!-- Form Validation Script -->
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let isValid = true;
+            let fields = document.querySelectorAll("input[required], textarea[required], select[required]");
+            
+            fields.forEach(field => {
+                let error = field.nextElementSibling;
+                
+                if (!field.value.trim()) {
+                    isValid = false;
+                    if (!error || !error.classList.contains("custom-error")) {
+                        let errorMessage = document.createElement("div");
+                        errorMessage.classList.add("custom-error");
+                        errorMessage.innerText = "This field is required.";
+                        field.after(errorMessage);
+                    }
+                } else {
+                    if (error && error.classList.contains("custom-error")) {
+                        error.remove();
+                    }
+                }
+            });
+        
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.innerHTML = `
                     <div class="card shadow-sm h-100">
                         <a href="/view/${bookstore.id}" class="stretched-link">
-                            <img src="${bookstore.image}" class="card-img-top" alt="${bookstore.title}" style="height: 200px; object-fit: cover;">
+                            <img src="${bookstore.image}" class="card-img-top" alt="${bookstore.title}">
                         </a>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">

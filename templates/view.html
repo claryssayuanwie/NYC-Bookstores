@@ -35,7 +35,10 @@
 
         <div class="row align-items-center">
             <div class="col-md-6">
-                <img src="{{ bookstore.image }}" alt="{{ bookstore.title }}" class="img-fluid rounded">
+                <!-- UPDATED: Use a custom class to force cropping -->
+                <img src="{{ bookstore.image }}" 
+                     alt="{{ bookstore.title }}" 
+                     class="bookstore-view-img">
             </div>
             <div class="col-md-6">
                 <p>{{ bookstore.summary }}</p>
@@ -82,6 +85,7 @@
             {% endif %}
         </div>
         
+    </div> <!-- end container -->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 

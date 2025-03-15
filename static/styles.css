@@ -3,8 +3,9 @@ body {
     font-family: 'Libre Baskerville', serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #FFF8DC; /* Pastel orange background */
     text-align: center;
+    color: #000000; /* Black for normal text */
 }
 
 /* Apply BioRhyme for the Logo */
@@ -12,21 +13,19 @@ body {
     font-family: 'BioRhyme', serif;
     font-weight: 700;
     font-size: 28px;
-    color: #007bff !important; 
+    color: #007bff !important; /* Blue for NYC Bookstores */
 }
-
-
 
 /* Navbar Styling */
 nav {
-    background-color: #333;
+    background-color: #007bff; /* Blue navbar */
     color: white;
     padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'BioRhyme', serif; /* Apply BioRhyme to Navbar */
-    font-weight: 700; /* Make it bold */
+    font-family: 'BioRhyme', serif;
+    font-weight: 700;
 }
 
 nav h1 a {
@@ -50,39 +49,45 @@ nav input[type="text"] {
     border-radius: 5px;
     font-size: 16px;
     text-align: left;
+    background-color: #E8EEF3; /* Light grey for input background */
 }
 
 nav button {
     height: 35px;
     padding: 8px 12px;
     border: none;
-    background-color: #ff6600;
+    background-color: #007bff; /* Blue for buttons */
     color: white;
     border-radius: 5px;
     cursor: pointer;
     white-space: nowrap; 
-    font-family: 'BioRhyme', serif; /* Ensure buttons also match font */
+    font-family: 'BioRhyme', serif;
 }
 
 nav button:hover {
-    background-color: #e65c00;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
     font-family: 'BioRhyme', serif;
     font-weight: 700; /* Bolder look */
+    color: #007bff; /* Dark grey for headings */
 }
+
+/* Make list items (books & events) dark grey */
+.list-inline-item {
+    color: #656F77; /* Dark grey */
+}
+
 
 /* Bookstore List - Fixes Triangle Layout */
 .bookstore-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 columns */
-    gap: 20px; /* Adds spacing between books */
-    max-width: 1000px; /* Prevents stretching */
-    margin: 20px auto; /* Centers the list */
-    padding: 20px;
-}
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start; /* Ensures cards align at the top */
+  }
 
 /* Bookstore Cards */
 .bookstore {
@@ -98,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
 .bookstore:hover {
     transform: scale(1.05);
 }
-
 
 /* Add spacing for bookstore details */
 .bookstore-detail {
@@ -125,6 +129,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     font-weight: bold;
     margin-top: 10px;
+    color: #000000; /* Black for labels */
 }
 
 .styled-form input,
@@ -134,6 +139,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #E8EEF3; /* Light grey for input background */
+    color: #000000; /* Black for input text */
 }
 
 .styled-form textarea {
@@ -151,6 +158,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     display: block;
     text-align: center;
+    color: #000000; /* Black for form labels */
 }
 
 /* Ensure equal width distribution for form groups */
@@ -169,13 +177,14 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     max-width: 100%;
 }
+
 .bookstore img {
-    display: block;
-    width: 300px; /* Set a fixed width */
-    height: 300px; /* Set a fixed height */
-    object-fit: cover; /* Ensures the image covers the area without distorting */
+    width: 100%;
+    aspect-ratio: 16/9; /* or 4/3, etc. */
+    object-fit: cover;
     border-radius: 10px;
-}
+  }
+
 
 .bookstore-link {
     text-decoration: none; /* Removes default link styling */
@@ -185,18 +194,46 @@ h1, h2, h3, h4, h5, h6 {
 
 .card {
     transition: transform 0.2s ease-in-out;
+    height: 400px;
+    overflow: hidden; /* Hide anything that doesn’t fit */
+    display: flex;
+    flex-direction: column;
 }
+
+.card-img-top {
+    /* Force image to a fixed height for consistency */
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    /* The remaining space for text */
+    flex: 1 1 auto;
+    padding: 1rem;
+    overflow: hidden; /* Hide text if it’s too long */
+  }
+  
 
 .card:hover {
     transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
+/* Style for multi-select dropdown */
+.form-select[multiple] {
+    height: auto; /* Allow the dropdown to expand */
+    padding: 10px;
+}
 
+/* Add some spacing between options */
+.form-select[multiple] option {
+    padding: 5px;
+}
 
 /* Buttons */
 .form-btn {
     display: inline-block;
-    background-color: #ff6600;
+    background-color: #007bff; /* Blue for primary buttons */
     color: white;
     padding: 10px 15px;
     border: none;
@@ -207,15 +244,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cancel-btn {
-    background-color: gray;
+    background-color: #656F77; /* Dark grey for secondary buttons */
+    color: white;
 }
 
 .form-btn:hover {
-    background-color: #e65c00;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 .cancel-btn:hover {
-    background-color: darkgray;
+    background-color: #656F77; /* Slightly darker grey on hover */
 }
 
 /* Style checkboxes to be inline */
@@ -231,11 +269,17 @@ h1, h2, h3, h4, h5, h6 {
     gap: 10px; /* Space between checkbox and text */
     font-size: 16px;
     cursor: pointer;
+    color: #000000; /* Black for checkbox labels */
 }
 
-.checkbox-label input {
-    transform: scale(1.2); /* Make checkbox slightly larger */
-}
+
+/* Force a fixed height and cropped image on the view page */
+.bookstore-view-img {
+    width: 100%;
+    height: 300px;      /* Choose any fixed height you want */
+    object-fit: cover;  /* Crops instead of squishing */
+    border-radius: 10px; /* Optional: matches your other rounded corners */
+  }
 
 /* Responsive Design */
 @media (max-width: 900px) {

@@ -232,9 +232,10 @@ def edit_bookstore(bookstore_id):
 
     if request.method == "POST":
         try:
-            # Get form data (now correctly matches form field names)
-            title = request.form.get("title")  # FIXED!
+            # Get form data (added summary!)
+            title = request.form.get("title")
             image = request.form.get("image")
+            summary = request.form.get("summary")  # <-- Add this line
             location = request.form.get("location")
             price_range = request.form.get("price_range")
             rating = request.form.get("rating")
@@ -243,11 +244,12 @@ def edit_bookstore(bookstore_id):
             events = request.form.get("events").split(",")
 
             if not title:
-                return "<h1>Error: Title is missing</h1>", 400  # Error if title is still missing
+                return "<h1>Error: Title is missing</h1>", 400  
 
             # Update bookstore
             bookstore["title"] = title
             bookstore["image"] = image
+            bookstore["summary"] = summary  # <-- Add this line
             bookstore["location"] = location
             bookstore["price_range"] = price_range
             bookstore["rating"] = float(rating)
@@ -258,9 +260,34 @@ def edit_bookstore(bookstore_id):
             return redirect(url_for("view_bookstore", bookstore_id=bookstore_id))
 
         except Exception as e:
-            return f"<h1>Error updating bookstore</h1><p>{e}</p>", 400  # Show error if something fails
+            return f"<h1>Error updating bookstore</h1><p>{e}</p>", 400  
 
     return render_template("edit.html", bookstore=bookstore, bookstores=bookstores, edit=True)
+
+
+@app.route("/add_api", methods=["POST"])
+def add_api():
+    new_id = max(b["id"] for b in bookstores) + 1 if bookstores else 1
+    new_store = {
+        "id": new_id,
+        "title": request.form["title"],
+        "image": request.form["image"],
+        "summary": request.form["summary"],
+        "location": request.form["location"],
+        "price_range": request.form["price_range"],
+        "rating": float(request.form["rating"]),
+        "year_established": int(request.form["year_established"]),
+        "popular_books": [book.strip() for book in request.form["popular_books"].split(",")],
+        "events": [event.strip() for event in request.form["events"].split(",")],
+        "similar_bookstores": []
+    }
+
+    # Make sure you call your similarity function here!
+    new_store["similar_bookstores"] = suggest_similar_bookstores(new_store)
+
+    bookstores.append(new_store)
+
+    return jsonify({"success": True, "id": new_id})
 
 
 
