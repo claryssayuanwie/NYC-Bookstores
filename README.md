@@ -24,18 +24,34 @@ cd NYC-Bookstores
 ```
 ### 2️⃣ Install dependencies
 ```bash
-pip install flask
+pip install -r requirements.txt
 
 ```
-### 3️⃣ Run the server
+### 3️⃣ Run the server locally
 ```bash
 python server.py
 ```
 ### 4️⃣ Open in browser
 Visit: http://127.0.0.1:5001/
 
+## 💗 Contributing
+To contribute:  
+1. **Fork** the repository.  
+2. **Create** a new branch:  
+   ```bash
+   git checkout -b feature-branch
+3. **Commit** your changes:
+   ```bash
+   git commit -m "Add new feature"
+4. **Push** to your branch:
+   ```bash
+   git push origin feature-branch
+5. Open a **pull request**!
 
+## 📜 License
+This project is licensed under the MIT License – feel free to use and modify!
 
-
-
+## 🔗 Live Demo
+Check out the deployed site here:
+👉 [NYC Bookstores](https://nyc-bookstores.onrender.com/)
 
